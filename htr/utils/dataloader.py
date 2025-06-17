@@ -4,15 +4,17 @@ from torch.utils.data import Dataset
 from torchvision import transforms
 from PIL import Image
 
-IMG_SIZE = (32, 128)
+IMG_SIZE = (64, 256)   # 解像度を高く
 
-# 画像前処理（Teacher / Student で共通）
 tfm = transforms.Compose([
-    transforms.Grayscale(),                    # 1ch
-    transforms.Resize((32, 128)),              # H=32, W=128
+    transforms.Grayscale(),
+    transforms.Resize(IMG_SIZE, antialias=True),
+    transforms.RandomAffine(degrees=2, translate=(0.03,0.03), scale=(0.95,1.05)),
     transforms.ToTensor(),
-    transforms.Normalize([0.5], [0.5])         # [-1, 1] スケール
+    transforms.Normalize([0.5],[0.5])
 ])
+
+
 
 # 1️⃣ 文字テーブル作成 ----------------------------------------------------------
 def build_char_tables(raw_reader):

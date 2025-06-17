@@ -74,6 +74,8 @@ def greedy_decode(logits):
         prev = s
     return "".join(out)
 
+
+
 # ---------- gather paths ----------
 paths = []
 if args.img: paths.append(pathlib.Path(args.img))

@@ -1,64 +1,57 @@
 # ===============================
-
 # Python / PyTorch project
-
 # ===============================
 
 # Byte-compiled / cache
-
-**pycache**/
-\*.py\[cod]
-\*.so
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
 
 # Virtual environments
-
 .htr-env/
 htr-env/
 ENV/
 
 # Jupyter / IPython
-
-.ipynb\_checkpoints/
+.ipynb_checkpoints/
 
 # PyTorch weights & checkpoints
-
-\*.pth
-\*.pt
-\*.ckpt
+*.pth
+*.pt
+*.ckpt
 
 # Dataset & large binaries
-
 /data/
 /image/
-\*.png
-\*.jpg
-\*.jpeg
-\*.tif
+*.png
+*.jpg
+*.jpeg
+*.tif
 
 # Logs & outputs
-
-\*.log
+*.log
 runs/
 
 # Packaging artifacts
-
-\*.egg-info/
+*.egg-info/
 dist/
 build/
 
 # VSCode / IDE settings
-
 .vscode/
 .idea/
-\*.code-workspace
+*.code-workspace
 
 # OS files
-
-.DS\_Store
+.DS_Store
 Thumbs.db
 
-# ===============================
+#debug file
+test.py
 
+# ===============================
 # End of .gitignore
-
 # ===============================
+

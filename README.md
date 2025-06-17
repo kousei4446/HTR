@@ -105,5 +105,3 @@ python scripts/infer_demo.py --img image/image.png --student
 ```
 python scripts/infer_demo.py --img image/image.png
 ```
-
-
