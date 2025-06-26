@@ -2,7 +2,7 @@
 
 > **Bentham / IAM 対応・PyTorch 実装**
 >
-> 軽量 Student モデルでも高精度を維持できる “Knowledge Distillation” パイプラインを **ゼロから設計 & コード実装** しました。
+>  HTR の　技術要素を学ぶための実装です。
 ---
 
 ## 🔍 What’s inside?
@@ -10,7 +10,6 @@
 | モジュール              | 技術要素                                                                         |
 | ------------------ | ---------------------------------------------------------------------------- |
 | **Teacher**        | Full‑Gated Conv + SE Block + Multi‑Head Self‑Attention + Positional Encoding |
-| **Student**        | チャネル数 ½・ヘッド数 1 の軽量設計                                                         | 
 | **KD Training**    | CTC Loss + KL Distillation                                                   |
 | **Dataset Loader** | BenthamDatasetR0‑GT 自動パース                                                    |
 
@@ -34,11 +33,9 @@ pip install -e .
 # 4) train teacher (~1h on RTX 3060)
 python scripts/train_teacher.py
 
-# 5) distill student (~40 min)
-python scripts/train_student.py
 ```
 
-生成された `teacher.pth` / `student.pth` を使って推論デモも可能です。
+生成された `teacher.pth` を使って推論デモも可能です。
 
 ---
 
@@ -51,7 +48,6 @@ python scripts/train_student.py
 │  └─ utils/           #   └ dataloader.py
 ├─ scripts/            # training entrypoints
 │  ├─ train_teacher.py
-│  └─ train_student.py
 └─ data/               # dataset root (git‑ignored)
 ```
 
@@ -59,31 +55,8 @@ python scripts/train_student.py
 
 ## 📊 Benchmarks (Bentham Valid)
 
-| Model                                          | CER ↓     | Params    | FPS\* (RTX 3060) |
-| ---------------------------------------------- | --------- | --------- | ---------------- |
-| **Teacher**                                    | **3.2 %** | 7.6 M     | 430 img/s        |
-| **Student**                                    | 4.1 %     | **2.9 M** | **830 img/s**    |
-| <sub>\*greedy decode / FP16 / batch = 32</sub> |           |           |                  |
 
----
 
-## ✨ Why it matters
-
-* **論文実装力** – arXiv <2412.18524> のアーキテクチャを忠実に再現
-* **最適化センス** – 蒸留で *モデルサイズ 62 % 削減*、*速度 1.9× UP*、精度低下 0.9 pp に抑制
-* **クリーン設計** – ライブラリ化 & `pip install -e .` 対応で再利用容易
-* **Windows / Linux 両対応** – `num_workers=0` fallback & spawn‑safe スクリプト
-
----
-
-## 🗺️ Roadmap / TODO
-
-* [ ] IAM Dataset サポート
-* [ ] Transformer Decoder + BeamSearch 推論
-* [ ] ONNX / TensorRT エクスポート
-* [ ] CI (GitHub Actions) で単体テスト & 速度ベンチ
-
----
 
 ## 🖋️ Author
 

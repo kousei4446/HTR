@@ -4,6 +4,7 @@
 """BenthamDatasetR0-GT 用の簡易リーダー。
 Images/Lines に PNG、Transcriptions に txt、Partitions に list ファイルという
 公式配布レイアウトを想定している。"""
+
 import os, html
 class Dataset:
     def __init__(self, source: str = "data", name: str = "bentham"):
